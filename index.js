@@ -41,6 +41,34 @@ client.on(Events.MessageCreate, (message) => {
     if (content.includes('inuzaru') || content.includes('inu') || content.includes('犬')) {
         message.reply({ content: 'なんですか!', allowedMentions: { repliedUser: true } });
     }
+    
+     if (content.includes('犯すぞ') || content.includes('inu') || content.includes('犬')) {
+        message.reply({ content: 'おわった...', allowedMentions: { repliedUser: true } });
+    }
+
+     if (content.includes('いぬざる') || content.includes('inu') || content.includes('犬')) {
+        message.reply({ content: 'なんですか!', allowedMentions: { repliedUser: true } });
+    }
+
+     if (content.includes('いぬ') || content.includes('inu') || content.includes('犬')) {
+        message.reply({ content: 'なんですか!', allowedMentions: { repliedUser: true } });
+    }
+
+     if (content.includes('三鷹') || content.includes('inu') || content.includes('犬')) {
+        message.reply({ content: '消せ', allowedMentions: { repliedUser: true } });
+    }
+
+     if (content.includes('こんにちは') || content.includes('inu') || content.includes('犬')) {
+        message.reply({ content: 'こんにちは!', allowedMentions: { repliedUser: true } });
+    }
+
+     if (content.includes('おはよう') || content.includes('inu') || content.includes('犬')) {
+        message.reply({ content: 'おはようございます!', allowedMentions: { repliedUser: true } });
+    }
+
+     if (content.includes('犬') || content.includes('inu') || content.includes('犬')) {
+        message.reply({ content: 'なんですか!', allowedMentions: { repliedUser: true } });
+    }    
 });
 
 client.login(process.env.TOKEN);
