@@ -1,0 +1,13 @@
+{
+  "name": "discord-voice-reply-bot",
+  "version": "1.0.0",
+  "description": "通話参加通知とリプライ対応Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1"
+  }
+}
