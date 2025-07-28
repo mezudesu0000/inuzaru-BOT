@@ -69,6 +69,10 @@ client.on(Events.MessageCreate, (message) => {
      if (content.includes('犬') || content.includes('inu') || content.includes('犬')) {
         message.reply({ content: 'なんですか!', allowedMentions: { repliedUser: true } });
     }    
+
+     if (content.includes('ですか') || content.includes('inu') || content.includes('犬')) {
+        message.reply({ content: 'そうですよ!', allowedMentions: { repliedUser: true } });
+    }    
 });
 
 client.login(process.env.TOKEN);
