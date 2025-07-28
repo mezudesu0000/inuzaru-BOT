@@ -2,77 +2,70 @@ const { Client, GatewayIntentBits, Events, Partials } = require('discord.js');
 require('dotenv').config();
 
 const client = new Client({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildVoiceStates
-    ],
-    partials: [Partials.Channel],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildVoiceStates,
+  ],
+  partials: [Partials.Channel],
 });
 
 const VOICE_NOTIFY_CHANNEL_ID = '1266978402414366774';
 
 client.once(Events.ClientReady, () => {
-    console.log(`✅ ログイン成功: ${client.user.tag}`);
+  console.log(`✅ ログイン成功: ${client.user.tag}`);
 });
 
-// 通話参加検知
 client.on(Events.VoiceStateUpdate, (oldState, newState) => {
-    // 参加したユーザーが人間 && 前のチャンネルが null（新規参加）
-    if (!oldState.channel && newState.channel && !newState.member.user.bot) {
-        const notifyChannel = client.channels.cache.get(VOICE_NOTIFY_CHANNEL_ID);
-        if (notifyChannel && notifyChannel.isTextBased()) {
-            notifyChannel.send('こんばんは!');
-        }
+  if (!oldState.channel && newState.channel && !newState.member.user.bot) {
+    const notifyChannel = client.channels.cache.get(VOICE_NOTIFY_CHANNEL_ID);
+    if (notifyChannel && notifyChannel.isTextBased()) {
+      notifyChannel.send('こんばんは!');
     }
+  }
 });
 
-// メッセージ応答処理
 client.on(Events.MessageCreate, (message) => {
-    if (message.author.bot) return;
+  if (message.author.bot) return;
 
-    const content = message.content.toLowerCase();
+  const content = message.content.toLowerCase();
 
-    if (content.includes('イクー') || content.includes('いくー')) {
-        message.reply({ content: 'イクー', allowedMentions: { repliedUser: true } });
-    }
+  if (content.includes('イクー') || content.includes('いくー')) {
+    message.reply({ content: 'イクー', allowedMentions: { repliedUser: false } });
+  }
 
-    if (content.includes('inuzaru') || content.includes('inu') || content.includes('犬')) {
-        message.reply({ content: 'なんですか!', allowedMentions: { repliedUser: true } });
-    }
-    
-     if (content.includes('犯すぞ') || content.includes('inu') || content.includes('犬')) {
-        message.reply({ content: 'おわった...', allowedMentions: { repliedUser: true } });
-    }
+  if (content.includes('inuzaru') || content.includes('inu') || content.includes('犬')) {
+    message.reply({ content: 'なんですか!', allowedMentions: { repliedUser: false } });
+  }
 
-     if (content.includes('いぬざる') || content.includes('inu') || content.includes('犬')) {
-        message.reply({ content: 'なんですか!', allowedMentions: { repliedUser: true } });
-    }
+  if (content.includes('犯すぞ')) {
+    message.reply({ content: 'おわった...', allowedMentions: { repliedUser: false } });
+  }
 
-     if (content.includes('いぬ') || content.includes('inu') || content.includes('犬')) {
-        message.reply({ content: 'なんですか!', allowedMentions: { repliedUser: true } });
-    }
+  if (content.includes('いぬざる')) {
+    message.reply({ content: 'なんですか!', allowedMentions: { repliedUser: false } });
+  }
 
-     if (content.includes('三鷹') || content.includes('inu') || content.includes('犬')) {
-        message.reply({ content: '消せ', allowedMentions: { repliedUser: true } });
-    }
+  if (content.includes('いぬ')) {
+    message.reply({ content: 'なんですか!', allowedMentions: { repliedUser: false } });
+  }
 
-     if (content.includes('こんにちは') || content.includes('inu') || content.includes('犬')) {
-        message.reply({ content: 'こんにちは!', allowedMentions: { repliedUser: true } });
-    }
+  if (content.includes('三鷹')) {
+    message.reply({ content: '消せ', allowedMentions: { repliedUser: false } });
+  }
 
-     if (content.includes('おはよう') || content.includes('inu') || content.includes('犬')) {
-        message.reply({ content: 'おはようございます!', allowedMentions: { repliedUser: true } });
-    }
+  if (content.includes('こんにちは')) {
+    message.reply({ content: 'こんにちは!', allowedMentions: { repliedUser: false } });
+  }
 
-     if (content.includes('犬') || content.includes('inu') || content.includes('犬')) {
-        message.reply({ content: 'なんですか!', allowedMentions: { repliedUser: true } });
-    }    
+  if (content.includes('おはよう')) {
+    message.reply({ content: 'おはようございます!', allowedMentions: { repliedUser: false } });
+  }
 
-     if (content.includes('ですか') || content.includes('inu') || content.includes('犬')) {
-        message.reply({ content: 'そうですよ!', allowedMentions: { repliedUser: true } });
-    }    
+  if (content.includes('ですか')) {
+    message.reply({ content: 'そうですよ!', allowedMentions: { repliedUser: false } });
+  }
 });
 
 client.login(process.env.TOKEN);
